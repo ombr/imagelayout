@@ -4,20 +4,33 @@ Item = require './item'
 class Layout
   constructor: (@_width, @_height, @_zoom)->
     @_current_line = new Line(this)
+    @_lines = [@_current_line]
   object_ratio: (object)->
     object.w / object.h
+  threshold: ->
+    @_height * @_zoom
   add: (object)->
-    @_current_line.add(object)
+    if @_current_line.accept(object)
+      @_current_line.add(object)
+    else
+      console.log '!!!NEW LINE !'
+      @_current_line = new Line(this)
+      @_current_line.add(object)
+      @_lines.push(@_current_line)
   getItems: ->
     items = []
-    offset_x = 0
-    height = @_current_line.height()
-    # console.log 'export, height = ', height
-    for object in  @_current_line.objects()
-      width = object.w / object.h * height
-      items.push(
-        new Item(object, offset_x, 0, width, height)
-      )
+    offset_y = 0
+    for line in @_lines
+      offset_x = 0
+      height = line.height()
+      for object in  line.objects()
+        width = object.w / object.h * height
+        # console.log(object, offset_x, offset_y, width, height)
+        items.push(
+          new Item(object, offset_x, offset_y, width, height)
+        )
+        offset_x += width
+      offset_y += height
     items
   width: ->
     @_width
