@@ -7,7 +7,7 @@ class Line
     return true if Math.min(1, @calculate_ratio_with(object)) == Math.min(1, @_ratio)
     false
   width_without_margin: ->
-    @_layout.width() - ((@_objects.length - 1) * @_layout.margin())
+    @_layout._width - ((@_objects.length - 1) * @_layout._margin)
   height_without_zoom: (ratio)->
     @width_without_margin() * Math.min(ratio, 1)
   height: ->

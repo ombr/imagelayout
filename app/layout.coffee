@@ -32,12 +32,5 @@ class Layout
         offset_x += width + @_margin
       offset_y += height + @_margin
     items
-  width: ->
-    @_width
-  height: ->
-    @_height
-  zoom: ->
-    @_zoom
-  margin: ->
-    @_margin
+
 module.exports = Layout
