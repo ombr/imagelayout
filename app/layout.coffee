@@ -2,7 +2,7 @@ Line = require './line'
 Item = require './item'
 
 class Layout
-  constructor: (@_width, @_height, @_zoom)->
+  constructor: (@_width, @_height, @_zoom, @_margin = 0)->
     @_current_line = new Line(this)
     @_lines = [@_current_line]
   object_ratio: (object)->
@@ -29,8 +29,8 @@ class Layout
         items.push(
           new Item(object, offset_x, offset_y, width, height)
         )
-        offset_x += width
-      offset_y += height
+        offset_x += width + @_margin
+      offset_y += height + @_margin
     items
   width: ->
     @_width
@@ -38,4 +38,6 @@ class Layout
     @_height
   zoom: ->
     @_zoom
+  margin: ->
+    @_margin
 module.exports = Layout
