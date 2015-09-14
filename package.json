@@ -1,0 +1,44 @@
+{
+  "name": "imagelayout",
+  "version": "0.0.1",
+  "description": "To layout your images.",
+  "homepage": "https://github.com/ombr/imagelayout#readme",
+  "keywords": [
+    "image",
+    "img",
+    "layout"
+  ],
+  "author": "Luc Boissaye",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "brunch watch --server",
+    "test": "mocha --compilers coffee:coffee-script/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ombr/imagelayout.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ombr/imagelayout/issues"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "appcache-brunch": "^1.7.1",
+    "auto-reload-brunch": ">= 1.0 < 1.9",
+    "chai": "^3.2.0",
+    "clean-css-brunch": ">= 1.0 < 1.9",
+    "coffee-script": "^1.10.0",
+    "coffee-script-brunch": "^1.8.2",
+    "coffeelint-brunch": "^1.7.0",
+    "css-brunch": ">= 1.0 < 1.9",
+    "imageoptmizer-brunch": "0.0.6",
+    "jaded-brunch": "^1.7.13",
+    "javascript-brunch": ">= 1.0 < 1.9",
+    "mocha": "^2.3.2",
+    "uglify-js-brunch": ">= 1.0 < 1.9",
+    "brunch": "^1.8.5",
+    "sass-brunch": "^1.8.11"
+  }
+}
