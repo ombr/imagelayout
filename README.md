@@ -1,13 +1,9 @@
 # imagelayout
 
-...
-
 # todo
 
-custom matchers for layouts ?
+custom matchers for tests...
 
-Margin ?
-Lines breaks ?
 items position on single lines ?
 Packaging ? dist ? instead of public ?
 Publication Npm ?

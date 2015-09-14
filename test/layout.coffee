@@ -2,9 +2,6 @@ expect = require('chai').expect
 Layout = require '../app/layout'
 
 describe 'Layout', ->
-
-
-
   describe 'layout landscape', ->
     it 'object portrait', ->
       layout = new Layout(100, 50, 1)
