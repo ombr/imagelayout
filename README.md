@@ -2,13 +2,11 @@
 
 # todo
 
-custom matchers for tests...
-
-Packaging ? dist ? instead of public ?
+custom matchers for tests... ( Math.round ?)
+Packaging ? dist ? instead of public ? + self contained ?
 Publication Npm ?
 Doc ?
 Tests in browsers ?
-
 
 
 

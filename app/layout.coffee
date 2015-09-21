@@ -13,8 +13,8 @@ class Layout
     else
       # console.log '!!!NEW LINE !'
       @_current_line = new Line(this)
-      @_current_line.add(object)
       @_lines.push(@_current_line)
+      @_current_line.add(object)
   getItems: (start=0, end)->
     items = []
     offset_y = 0
