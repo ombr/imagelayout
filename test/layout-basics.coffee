@@ -71,7 +71,6 @@ describe 'Layout', ->
       expect(layout.getItems()[0].x).to.equal(0)
       expect(layout.getItems()[1].y).to.equal(50)
 
-
     it 'a portrait and a landscape on the same line', ->
       layout = new Layout(100, 100, 0.1)
       layout.add({w: 50, h: 100})
@@ -81,10 +80,3 @@ describe 'Layout', ->
       expect(layout.getItems()[1].w).to.equal(20)
       expect(layout.getItems()[0].x).to.equal(0)
       expect(layout.getItems()[1].x).to.equal(5)
-
-  describe '#object_ratio', ->
-    it 'return the ratio of an object', ->
-      layout = new Layout(100, 100, 0.1)
-      expect(
-        layout.object_ratio({w: 1920, h: 1080, src: 'asdasd'})
-      ).to.equal 16/9

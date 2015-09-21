@@ -26,7 +26,7 @@ describe 'Line', ->
         line = new Line(layout)
         line.add({ w: 200, h: 100 })
         line.add({ w: 100, h: 100 })
-        expect(line.height()).to.equal(33.33333333333333)
+        expect(line.height()).to.equal(33.333333333333336)
       it 'return line height with two square items', ->
         layout = new Layout(100,100, 0.5)
         line = new Line(layout)
@@ -43,7 +43,6 @@ describe 'Line', ->
         layout = new Layout(100,100, 1)
         line = new Line(layout)
         line.add({ w: 200, h: 100 })
-        console.log 'Exit ?', line.height()
         expect(line.height()).to.equal(50)
       it 'return line height with single portrait object', ->
         layout = new Layout(100,100, 1)

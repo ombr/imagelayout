@@ -1,35 +1,46 @@
+Item = require './item'
 class Line
   constructor: (@_layout)->
     @_objects = []
   accept: (object)->
     return true if @_objects.length == 0
-    return true if @height_without_zoom(@_ratio) > @_layout.threshold()
-    return true if Math.min(1, @calculate_ratio_with(object)) == Math.min(1, @_ratio)
+    return true if @calculate_ratio_with(object) <= @_layout.ratio_threshold()
     false
-  width_without_margin: ->
-    @_layout._width - ((@_objects.length - 1) * @_layout._margin)
-  height_without_zoom: (ratio)->
-    @width_without_margin() * Math.min(ratio, 1)
-  height: ->
-    height_without_zoom = @height_without_zoom(@_ratio)
-    # console.log 'without_zoom:', height_without_zoom
-    threshold = @_layout.threshold()
-    # console.log 'height', height_without_zoom, 'threshold', threshold
-    if height_without_zoom > threshold
-      # console.log 'Apply Threshold ? ', threshold
-      return threshold
+  ratio: ->
+    ratio_threshold = @_layout.ratio_threshold()
+    ratio = @ratio_with_margin(@_objects_ratio, @_objects.length, @_layout._margin)
+    if ratio > ratio_threshold
+      ratio
     else
-      return height_without_zoom
+      ratio_threshold
+  height: ->
+    return @_layout._width / @ratio()
+  add: (object)->
+    if @_objects.length == 0
+      @_objects_ratio = @object_ratio(object)
+    else
+      @_objects_ratio += @object_ratio(object)
+    @_objects.push(object)
+    # console.log 'add', object, 'new_ratio_internal:', @_objects_ratio,'ratio', @ratio(), 'new_height', @height()
+  getItems: (offset_y)->
+    height = @height()
+    items = []
+    offset_x = 0
+    for object in  @_objects
+      width = object.w / object.h * height
+      # item = new Item(object, offset_x, offset_y, width, height)
+      item = new Item(object, Math.round(offset_x), Math.round(offset_y), Math.round(width), Math.round(height))
+      items.push(item)
+      offset_x += width + @_layout._margin
+    items
   calculate_ratio_with: (object)->
-    ratio = object.h/object.w
+    ratio = @object_ratio(object)
     if @_objects.length == 0
       ratio
     else
-      1.0 / (1.0/@_ratio + 1/ratio)
-  add: (object)->
-    @_ratio = @calculate_ratio_with(object)
-    @_objects.push(object)
-    console.log 'add', object, 'new_ratio:', @_ratio, 'new_height_without_zoom', @height_without_zoom(), 'new_height', @height()
-  objects: ->
-    @_objects
+      return @ratio_with_margin(@_objects_ratio + ratio, @_objects.length + 1, @_layout._margin)
+  ratio_with_margin: (ratio, n, margin)->
+    ratio + (n - 1) * margin / @_layout._width * ratio
+  object_ratio: (object)->
+    object.w / object.h
 module.exports = Line
